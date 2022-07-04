@@ -187,7 +187,7 @@ def _adjust_for_anisotropy(X, center, scaling, angle):
         raise ValueError(
             "Adjust for anisotropy function doesn't support ND spaces where N>3"
         )
-    X_adj = np.dot(stretch, np.dot(rot_tot, X.T)).T
+    X_adj = np.linalg.multi_dot([stretch, rot_tot, X.T]).T
 
     X_adj += center
 
